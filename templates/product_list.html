@@ -3,7 +3,24 @@
 {% block content %}
 <h2>Here is the list of products</h2>
 
-{% for product in products %}
-	{{ product }}
-{% endfor %}
+<table>
+	<tr>
+		<th>Column1</th>
+		<th>Column2</th>
+	</tr>
+	
+	{% for product in qs %}
+		<tr>
+			<td>{{ product_name }}</td>
+			<td>{{ product_type }}</td>
+		</tr>
+	{% endfor %}
+</table>
+	
+{% if qs %}
+	got data.
+{% else %}
+	no data.
+{% endif %}
+	
 {% endblock content %}
