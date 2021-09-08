@@ -8,10 +8,11 @@ from .models import Product
 # Create your views here.
 
 def product_list(request):
-	context = {
-    'product':Product.objects.all()
-}
-	return render(request, "product.html", context)
+    queryset = Product.objects.all()
+    context = { 
+        'qs': queryset
+    }
+    return render(request, "product_list.html", context)
 
 
 class RegisterView(generic.CreateView):
