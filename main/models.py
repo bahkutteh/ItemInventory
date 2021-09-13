@@ -7,7 +7,12 @@ from django.conf import settings
 
 class Role(models.Model):
 	role_name = models.TextField(blank=True)
-	role_type = models.IntegerField(blank=True)
+	class Role_Type (models.IntegerChoices):
+		admin = 1
+		staff = 2
+		customer = 3
+		
+	role_type = models.IntegerField(choices=Role_Type.choices)
 	
 	def __str__(self):
 		return self.role_name
@@ -28,6 +33,8 @@ class Product(models.Model):
 	
 	def __str__(self):
 		return self.product_name
+		
+	
 
 class Product_Detail(models.Model):
 	product = models.ForeignKey(Product, on_delete=models.CASCADE, blank=False)
@@ -50,7 +57,7 @@ class Order_Detail(models.Model):
 	order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=False)
 	shipping_address = models.TextField(blank=True)
 	total_price = models.FloatField(blank=True)
-	date = models.DateField(auto_now_add=True, blank=True)
+	date = models.DateTimeField(default=timezone.now, blank=True)
 	
 	def __str__(self):
 		return self.shipping_address

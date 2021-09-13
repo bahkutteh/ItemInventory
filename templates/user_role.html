@@ -1,18 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Here is the list of products</h2>
+<h2>Here is the list of role of the user</h2>
 
 <table>
 	<tr>
-		<th>Product Name</th>
-		<th>Product Type</th>
+		<th>Username</th>
+		<th>Email</th>
+		<th>Password</th>
 	</tr>
 	{% if qs %}
-	{% for product in qs %}
+	{% for role in qs %}
 		<tr>
-			<td>{{ product.product_name }}</td>
-			<td>{{ product.product_type }}</td>
+			<td>{{ role.role_name }}</td>
+			<td>{{ role.role_type }}</td>
 		</tr>
 	{% endfor %}
 	{% else %}

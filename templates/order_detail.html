@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Here is the detail of the order</h2>
+
+<table>
+	<tr>
+		<th>Shipping Address</th>
+		<th>Total Price</th>
+		<th>Date</th>
+	</tr>
+	{% if qs %}
+	{% for order in qs %}
+		<tr>
+			<td>{{ order.shipping_address }}</td>
+			<td>{{ order.total_price }}</td>
+			<td>{{ order.date }}</td>
+		</tr>
+	{% endfor %}
+	{%else%}
+		<tr>
+			<td>No Data</td>
+		</tr>
+	{% endif %}
+</table>
+{% endblock content %}

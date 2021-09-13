@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Here is the list of user</h2>
+
+<table>
+	<tr>
+		<th>Username</th>
+		<th>Email</th>
+		<th>Password</th>
+	</tr>
+	{% if qs %}
+	{% for user in qs %}
+		<tr>
+			<td>{{ user.username }}</td>
+			<td>{{ user.user_email }}</td>
+			<td>{{ user.user_password }}</td>
+		</tr>
+	{% endfor %}
+	{% else %}
+		<tr>
+			<td>No Data</td>
+		</tr>
+	{% endif %}
+</table>
+{% endblock content %}

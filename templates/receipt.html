@@ -1,18 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Here is the detail of the product</h2>
+<h2>This is the receipt</h2>
 
 <table>
 	<tr>
-		<th>Description</th>
-		<th>Price</th>
+		<th>Barcode</th>
 	</tr>
 	{% if qs %}
-	{% for product_detail in qs %}
+	{% for receipt in qs %}
 		<tr>
-			<td>{{ product_detail.description }}</td>
-			<td>{{ product_detail.price }}</td>
+			<td>{{ receipt.barcode}}</td>
 		</tr>
 	{% endfor %}
 	{%else%}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Here is the list of the order</h2>
+
+<table>
+	<tr>
+		<th>Quantity</th>
+	</tr>
+	{% if qs %}
+	{% for order in qs %}
+		<tr>
+			<td>{{ order.quantity}}</td>
+		</tr>
+	{% endfor %}
+	{%else%}
+		<tr>
+			<td>No Data</td>
+		</tr>
+	{% endif %}
+</table>
+{% endblock content %}
