@@ -1,17 +1,17 @@
 from django.forms import ModelForm
-from main.models import User, Role, Product, Product_Detail,Order, Order_Detail, Receipt
+from main.models import Product, Product_Detail,Order, Order_Detail
 
 #create the form class.
 
-class UserForm(ModelForm):
-	class Meta:
-		model= User
-		fields: ['username','user_email','user_password']
+#class UserForm(ModelForm):
+#	class Meta:
+#		model= User
+#		fields: ['username','user_email','user_password']
 		
-class RoleForm(ModelForm):
-	class Meta:
-		model= Role
-		fields: ['role_name','role_type']
+#class RoleForm(ModelForm):
+#	class Meta:
+#		model= Role
+#		fields: ['role_name','role_type']
 
 class ProductForm(ModelForm):
 	class Meta:
@@ -33,8 +33,8 @@ class OrderDetailForm(ModelForm):
 		model= Order_Detail
 		fields = ['shipping_address', 'total_price','date']
 		
-class ReceiptForm(ModelForm):
-	class Meta:
-		model= Receipt
-		fields = ['barcode']
+#class ReceiptForm(ModelForm):
+#	class Meta:
+#		model= Receipt
+#		fields = ['barcode']
 		

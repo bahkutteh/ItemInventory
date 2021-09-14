@@ -27,8 +27,8 @@ class User(models.Model):
 		return self.username
 	
 class Product(models.Model):
-	product_name = models.TextField(blank=True)
-	product_type = models.TextField(blank=True)
+	product_name = models.CharField(max_length=50, blank=True)
+	product_type = models.CharField(max_length=50, blank=True)
 	
 	
 	def __str__(self):
