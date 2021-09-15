@@ -2,26 +2,28 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render, redirect
-from .forms import ProductForm, ProductDetailForm, OrderForm, OrderDetailForm
-from main.models import Product, Product_Detail, Order, Order_Detail
+from .forms import  ProductForm, ProductDetailForm, OrderForm, OrderDetailForm
+from main.models import  Product, Product_Detail, Order, Order_Detail
 
-#from .models import Product, Product_Detail
+from .forms import UserForm, RoleForm, ReceiptForm
+from main.models import User, Role, Receipt
+
 
 # Create your views here.
 
-#def user_list(request):
-#    queryset = User.objects.all()
-#    context = { 
-#        'qs': queryset
-#    }
-#    return render(request, "user_list.html", context)
+def user_list(request):
+    queryset = User.objects.all()
+    context = { 
+        'qs': queryset
+    }
+    return render(request, "user_list.html", context)
     
-#def user_role(request):
-#    queryset = Role.objects.all()
-#    context = { 
-#        'qs': queryset
-#    }
-#   return render(request, "user_role.html", context)
+def user_role(request):
+    queryset = Role.objects.all()
+    context = { 
+        'qs': queryset
+    }
+    return render(request, "user_role.html", context)
 
 def product_list(request):
     queryset = Product.objects.all()
@@ -80,14 +82,15 @@ def CreateOrder(request):	#creating an order (update)
 def updateOrder(request, pk):	#updating order
 	order = Order.objects.get(id=pk)
 	form = OrderForm(instance=order)
-	context = {'form':form}
-	return render (request, 'creating/order_form.html', context)
 	
 	if request.method == 'POST':
-		form = OrderForm (request.POST, instance=order)
+		form =OrderForm(request.POST, instance=order)
 		if form.is_valid():
 			form.save()
 			return redirect('/')
+			
+	context = {'form':form}
+	return render (request, 'creating/order_form.html', context)
 			
 def deleteOrder(request, pk):
 	order = Order.objects.get(id=pk)
@@ -127,14 +130,16 @@ def CreateProduct(request):	#creating an product
 def updateProduct(request, pk):		#updating product
 	order = Product.objects.get(id=pk)
 	form = ProductForm(instance=order)
-	context = {'form':form}
-	return render (request, 'creating/product_form.html', context)
 	
 	if request.method == 'POST':
-		form = ProductForm (request.POST, instance=order)
+		form =ProductForm(request.POST, instance=order)
 		if form.is_valid():
 			form.save()
 			return redirect('/')
+			
+	context = {'form':form}
+	return render (request, 'creating/product_form.html', context)
+	
 			
 def deleteProduct(request, pk):		#delete product
 	product = Product.objects.get(id=pk)
@@ -163,27 +168,27 @@ def CreateProductDetail(request):	#adding an Product detail
 
 #forms for each models
 
-#def Manage_User(request):
-#	UserForm = UserForm(Product, fields = ('username', 'user_email','user_password'))
+def Manage_User(request):
+	UserForm = UserForm(Product, fields = ('username', 'user_email','user_password'))
 	
-#	if request.method == 'POST':
-#		formset = UserFormSet(request.POST, request.FILES)
-#		if formset.is_valid():
-#			formset.save()
-#	else:
-#		formset = UserFormSet()
-#	return render (request, 'user_list.html', {'formset' : formset})
+	if request.method == 'POST':
+		formset = UserFormSet(request.POST, request.FILES)
+		if formset.is_valid():
+			formset.save()
+	else:
+		formset = UserFormSet()
+	return render (request, 'user_list.html', {'formset' : formset})
 	
-#def Manage_User_Role(request):
-#	RoleForm = RoleForm(Product, fields = ('role_name', 'role_type'))
-#
-#	if request.method == 'POST':
-#		formset = RoleFormSet(request.POST, request.FILES)
-#		if formset.is_valid():
-#			formset.save()
-#	else:
-#		formset = RoleFormSet()
-#	return render (request, 'user_role.html', {'formset' : formset})
+def Manage_User_Role(request):
+	RoleForm = RoleForm(Product, fields = ('role_name', 'role_type'))
+
+	if request.method == 'POST':
+		formset = RoleFormSet(request.POST, request.FILES)
+		if formset.is_valid():
+			formset.save()
+	else:
+		formset = RoleFormSet()
+	return render (request, 'user_role.html', {'formset' : formset})
 
 def Manage_Product(request):	#show product
 	ProductForm = ProductForm(Product, fields = ('product_name', 'product_type'))
@@ -229,13 +234,13 @@ def Manage_Order_Detail(request):
 		formset = OrderDetailFormSet()
 	return render (request, 'order_detail.html', {'formset' : formset})
 	
-#def Manage_Receipt(request):
-#	ReceiptForm = ReceiptForm(Receipt, fields = ('barcode'))
-#	
-#	if request.method == 'POST':
-#		formset = ReceiptFormSet(request.POST, request.FILES)
-#		if formset.is_valid():
-#			formset.save()
-#	else:
-#		formset = ReceiptFormSet()
-#	return render (request, 'receipt.html', {'formset' : formset})
+def Manage_Receipt(request):
+	ReceiptForm = ReceiptForm(Receipt, fields = ('barcode'))
+	
+	if request.method == 'POST':
+		formset = ReceiptFormSet(request.POST, request.FILES)
+		if formset.is_valid():
+			formset.save()
+	else:
+		formset = ReceiptFormSet()
+	return render (request, 'receipt.html', {'formset' : formset})

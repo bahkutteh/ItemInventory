@@ -7,7 +7,7 @@ app_name = 'main'
 urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     
-    path('product/',product_list, name="product_list"),
+    path('product/', views.product_list, name="product_list"),
     path('product/detail/',product_detail, name="product_detail"),
     
     path ('create_product/', views.CreateProduct, name="create_product"),
